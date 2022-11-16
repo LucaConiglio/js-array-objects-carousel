@@ -1,11 +1,12 @@
 .carosello{
     position: relative;
     width: 1150px;
-    height: 450px;
+    height: 600px;
+
 }
 .box-img{
     width: 1150px;
-    height: 450px;
+    height: 600px;
 }
 img{
     display: block;
@@ -24,7 +25,7 @@ img{
 #button-top{
     position: absolute; 
     top: 30px;
-    left: 50%;
+    right: 75px;
     transform: translate(-50%, -50%);
     padding: 0.3rem;
     border-radius: 50%;
@@ -35,7 +36,7 @@ img{
 #button-bot{
     position: absolute; 
     bottom: 0px;
-    left: 50%;
+    right: 75px;
     transform: translate(-50%, -50%);
     padding: 0.3rem;
     border-radius: 50%;
@@ -71,7 +72,7 @@ img{
 .descrizione{
     position: absolute;
     text-align: end;
-    top: 75%;
+    top: 80%;
     right: 220px;
-    color: rgb(95, 143, 0);
+    color: rgb(255, 255, 255);
 }

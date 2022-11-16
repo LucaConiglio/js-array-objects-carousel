@@ -52,7 +52,6 @@ const slideImg = document.querySelector(".slide-img");
 const grigliaDestra = document.querySelector(".griglia-destra");
 const btnTop = document.getElementById("button-top");
 const btnBot = document.getElementById("button-bot");
-
 let imgSlide;
 //creo un ciclo per creare le immagini
 for (let i = 0; i < images.length; i++) {
@@ -74,6 +73,16 @@ for (let i = 0; i < images.length; i++) {
     let imgDestra = document.createElement("img");
     imgDestra.src = immagini;
     imgDestra.classList.add("crystal");
+
+    imgDestra.addEventListener("click", function() {
+        //let imgGrigliaDestra = imgGrigliaDestra.querySelector("griglia-destra > *");
+        //imgGrigliaDestra.classList.remove("active")
+        
+        this.classList.add("active");
+        //console.log(this);
+        //cambiaImmagine(false)
+    })     //********************* */
+
     grigliaDestra.append(imgDestra)
 
     let divTitle = document.createElement("div");
@@ -88,56 +97,68 @@ for (let i = 0; i < images.length; i++) {
     description.innerHTML = descriptionText;
     divTitle.append(title);
     divTitle.append(description);
+
     if( i === 0){
         boxImg.classList.remove("display-none");
         imgDestra.classList.add("active");
     }
 }
-
+//metto in ascolto il bottone
 btnTop.addEventListener("click", function () {
-
-    const oldImgEl = document.querySelector(`.slide-img :nth-child(${imgIndex + 1})`);
-    oldImgEl.classList.add("display-none");
-    const oldImgRight = document.querySelector(`.griglia-destra :nth-child(${imgIndex + 1})`);
-    oldImgRight.classList.remove("active");
-
+//invoco la funzione cambiaimmagine dicendo indirettamente che isnext é false
+    cambiaImmagine(false);
   
+});
 
-    imgIndex++;
-
-    if (imgIndex >= images.length) {
-        imgIndex = 0
-    }
-    const newImgEl = document.querySelector(`.slide-img :nth-child(${imgIndex + 1})`);
-    oldImgEl.classList.remove("display-none");
-
-    const newImgRight = document.querySelector(`.griglia-destra :nth-child(${imgIndex + 1})`);
-    oldImgRight.classList.add("active");
-
-    console.log(imgIndex);
-    
-   
-})
-
+//metto in ascolto il bottone
 btnBot.addEventListener("click", function () {
+//invoco la funzione cambiaimmagine dicendo indirettamente che isnext é true
+    cambiaImmagine(true);
 
-    const oldImgEl = document.querySelector(`.slide-img :nth-child(${imgIndex + 1})`);
+});
+
+setInterval(function() {
+
+    cambiaImmagine(true);
+
+}, 3000);
+
+
+
+//creo una funzione chiamandola cambiaimmagine
+function cambiaImmagine(isNext) {
+
+    const oldImgEl = document.querySelector(`.slide-img > :nth-child(${imgIndex + 1})`);
     oldImgEl.classList.add("display-none");
-    const oldImgRight = document.querySelector(`.griglia-destra :nth-child(${imgIndex + 1})`);
+
+    const oldImgRight = document.querySelector(`.griglia-destra > :nth-child(${imgIndex + 1})`);
     oldImgRight.classList.remove("active");
+    //se isnext é = a true incrementa
+    if (isNext === true) {
 
-    imgIndex--;
-    if (imgIndex < 0) {
-        imgIndex = images.length - 1;
+        // --
+        imgIndex++;
+
+        if (imgIndex >= images.length) {
+            imgIndex = 0
+        }
+        // ----
+    } else { // se é false decrementa
+
+        imgIndex--;
+
+        if (imgIndex < 0) {
+            imgIndex = images.length - 1;
+        }        
     }
+    
 
-    const newImgEl = document.querySelector(`.slide-img :nth-child(${imgIndex + 1})`);
-    oldImgEl.classList.remove("display-none");
+    const newImgEl = document.querySelector(`.slide-img > :nth-child(${imgIndex + 1})`);
+    newImgEl.classList.remove("display-none");
 
-    const newImgRight = document.querySelector(`.griglia-destra :nth-child(${imgIndex + 1})`);
-    oldImgRight.classList.add("active");
+    const newImgRight = document.querySelector(`.griglia-destra > :nth-child(${imgIndex + 1})`);
+    newImgRight.classList.add("active");
     
     
     console.log(imgIndex);
-
-})
+}

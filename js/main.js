@@ -53,6 +53,8 @@ const grigliaDestra = document.querySelector(".griglia-destra");
 const btnTop = document.getElementById("button-top");
 const btnBot = document.getElementById("button-bot");
 let imgSlide;
+const btnStart = document.getElementById("btn-start")
+const btnStop = document.getElementById("btn-stop")
 //creo un ciclo per creare le immagini
 for (let i = 0; i < images.length; i++) {
     const immagini = images[i].image;
@@ -63,6 +65,9 @@ for (let i = 0; i < images.length; i++) {
     let boxImg = document.createElement("div");
     let imgSlide = document.createElement("img");
     imgSlide.src = immagini;
+    boxImg.dataset.immagineGrande = (i);
+
+    console.log(imgSlide); 
     //aggiungo la classe d-none
     boxImg.classList.add("box-img");
     boxImg.classList.add("display-none");
@@ -72,16 +77,75 @@ for (let i = 0; i < images.length; i++) {
 
     let imgDestra = document.createElement("img");
     imgDestra.src = immagini;
+    imgDestra.dataset.immaginePiccola = (i);
     imgDestra.classList.add("crystal");
 
     imgDestra.addEventListener("click", function() {
         //let imgGrigliaDestra = imgGrigliaDestra.querySelector("griglia-destra > *");
         //imgGrigliaDestra.classList.remove("active")
+        destra = document.querySelectorAll(`.crystal`);
+
+        destra.forEach(element => {
+            element.classList.remove("active");
+        });
+
+        //grande = document.querySelectorAll(".box-img");
+//
+        //grande.forEach(element => {
+        //    element.classList.remove("display-none");
+        //});
+//
+        //grande.forEach(element => {
+        //    element.classList.add("display-none");
+        //});
+//
+        //grande[imgIndex + -1].classList.remove("display-none");
+        //    
+        
+        imgIndex = this.dataset.immaginePiccola
         
         this.classList.add("active");
+        console.log(this.dataset.immaginePiccola);
+        console.log(boxImg.dataset.immagineGrande);
+
+        
+
+        //imgSlide.document.createElement("img");
+        //imgSlide.src = immagini(imgIndex);
+
+        //const oldActiveEl = boxImg.querySelector( "div" );
+        //const oldThumbActiveEl = imgDestra.querySelector( ".active" );
+
+        //if (oldActiveEl.classList.includes("display-none")) {
+        //    
+        //} else {
+        //    oldActiveEl.classList.add("display-none")
+        //}
+    
+        //oldActiveEl.classList.add( "display-none" );
+        //oldThumbActiveEl.classList.remove( "active" );
+        //
+    
+    
+        //const imgElements = boxImg.querySelectorAll( "div" );
+        //imgElements.classList.add ("display-none");
+        //const thumbElements = imgDestra.querySelectorAll( "img" );
+    
+        //const newActiveEl = imgElements[ imgIndex ];
+        //const newThumbActiveEl = thumbElements[ imgIndex ];
+    
+        //newActiveEl.classList.remove( "display-none" );
+        //newThumbActiveEl.classList.add( "active" );
+
+        
+        console.log(imgIndex);
         //console.log(this);
         //cambiaImmagine(false)
+
+
     })     //********************* */
+
+
 
     grigliaDestra.append(imgDestra)
 
@@ -117,13 +181,27 @@ btnBot.addEventListener("click", function () {
 
 });
 
-setInterval(function() {
-
-    cambiaImmagine(true);
-
-}, 3000);
 
 
+//btnStart.addEventListener("click", function (){
+// console.log("ciao");
+//    
+//})
+//btnStop.addEventListener("click", function (){
+// console.log("stop");
+//    setInterval(function() {
+//
+//        return
+//    
+//    }, 3000);
+//})
+
+//setInterval(function() {
+//    
+//           cambiaImmagine(true);
+//       
+//       }, 3000);
+//
 
 //creo una funzione chiamandola cambiaimmagine
 function cambiaImmagine(isNext) {

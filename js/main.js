@@ -67,7 +67,7 @@ for (let i = 0; i < images.length; i++) {
     imgSlide.src = immagini;
     boxImg.dataset.immagineGrande = (i);
 
-    console.log(imgSlide); 
+    //console.log(imgSlide); 
     //aggiungo la classe d-none
     boxImg.classList.add("box-img");
     boxImg.classList.add("display-none");
@@ -80,35 +80,50 @@ for (let i = 0; i < images.length; i++) {
     imgDestra.dataset.immaginePiccola = (i);
     imgDestra.classList.add("crystal");
 
-    imgDestra.addEventListener("click", function() {
+    imgDestra.addEventListener("click", function () {
         //let imgGrigliaDestra = imgGrigliaDestra.querySelector("griglia-destra > *");
         //imgGrigliaDestra.classList.remove("active")
         destra = document.querySelectorAll(`.crystal`);
+
+        
+        let grande = document.querySelectorAll(".box-img");
+        console.log(grande);
+        
+        grande.forEach(element => {
+            element.classList.toggle("display-none" , true);
+           
+            
+        })
+
+        
+
 
         destra.forEach(element => {
             element.classList.remove("active");
         });
 
-        //grande = document.querySelectorAll(".box-img");
-//
-        //grande.forEach(element => {
-        //    element.classList.remove("display-none");
-        //});
-//
-        //grande.forEach(element => {
-        //    element.classList.add("display-none");
-        //});
-//
-        //grande[imgIndex + -1].classList.remove("display-none");
-        //    
+        
         
         imgIndex = this.dataset.immaginePiccola
+        console.log(imgIndex);
+
+        grande[imgIndex].classList.remove("display-none");
+
+        //let  boxImg.dataset.immagineGrande
         
         this.classList.add("active");
         console.log(this.dataset.immaginePiccola);
         console.log(boxImg.dataset.immagineGrande);
 
-        
+        imgIndex = this.dataset.immaginePiccola
+
+        //if (imgIndex === true){
+        //    imgIndex++;
+        //} else{
+        //    imgIndex--;
+        //};
+        //
+        //return(imgIndex);
 
         //imgSlide.document.createElement("img");
         //imgSlide.src = immagini(imgIndex);
@@ -143,7 +158,8 @@ for (let i = 0; i < images.length; i++) {
         //cambiaImmagine(false)
 
 
-    })     //********************* */
+    });
+       //********************* */
 
 
 
@@ -171,13 +187,15 @@ for (let i = 0; i < images.length; i++) {
 btnTop.addEventListener("click", function () {
 //invoco la funzione cambiaimmagine dicendo indirettamente che isnext é false
     cambiaImmagine(false);
-  
+    //cazzio(false);
+    
 });
 
 //metto in ascolto il bottone
 btnBot.addEventListener("click", function () {
 //invoco la funzione cambiaimmagine dicendo indirettamente che isnext é true
     cambiaImmagine(true);
+    //currentIndex(true);
 
 });
 
@@ -240,3 +258,18 @@ function cambiaImmagine(isNext) {
     
     console.log(imgIndex);
 }
+
+
+
+//grande = document.querySelectorAll(".box-img");
+//
+        //grande.forEach(element => {
+        //    element.classList.remove("display-none");
+        //});
+//
+        //grande.forEach(element => {
+        //    element.classList.add("display-none");
+        //});
+//
+        //grande[imgIndex + -1].classList.remove("display-none");
+        //    
